@@ -27,7 +27,7 @@ jobs:
     - checkout
     - run:
         name: Deploy Master to Heroku
-        command: 
+        command: |
           if [ $CIRCLE_BRANCH = 'master' ]
           then
             HEROKU_APP_NAME=$STAGING_HEROKU_APP_NAME
@@ -41,15 +41,14 @@ workflows:
   version: 2
   pacman-build:
     jobs:
-    - build
-    - client-test
+    # - build
+    # - client-test
     - deploy-server:
-        requires:
-        - build
-        - client-test
+        # requires:
+        # - build
+        # - client-test
         filters:
           branches:
             only:
               - master
-              - production
-          
+              - feature/setup-test
