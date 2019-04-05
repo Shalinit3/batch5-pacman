@@ -20,6 +20,9 @@ middleware(app);
 
 app.use('/api', routes);
 app.use('/', authRoutes);
+app.get('/test', (req, res) => {
+  res.send('Hello');
+});
 
 app.use((req, res, next) => {
   next(createError(404));

@@ -42,7 +42,7 @@ jobs:
           then
             HEROKU_APP_NAME=$STAGING_HEROKU_APP_NAME
           else
-            HEROKU_APP_NAME=$PRODUCTION_HEROKU_APP_NAME 
+            HEROKU_APP_NAME=$STAGING_HEROKU_APP_NAME 
           fi
           HEROKU=https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
           git push --force $HEROKU `git subtree split --prefix server HEAD`:master
@@ -51,20 +51,20 @@ workflows:
   version: 2
   pacman-build:
     jobs:
-    - build
-    - client-test:
-        requires:
-        - build
-    - server-test:
-        requires:
-        - build
-    - deploy-server:
-        requires:
-        - client-test
-        - server-test
-        filters:
-          branches:
-            only:
-              - master
-              - production
+    # - build
+    # - client-test:
+    #     requires:
+    #     - build
+    # - server-test:
+    #     requires:
+    #     - build
+    - deploy-server
+        # requires:
+        # - client-test
+        # - server-test
+        # filters:
+        #   branches:
+        #     only:
+        #       - master
+        #       - production
           
