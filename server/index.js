@@ -22,7 +22,7 @@ middleware(app);
 app.use('/api', routes);
 app.use('/', authRoutes);
 app.use('/', userroutes);
-
+app.use(express.static(__dirname, { dotfiles: 'allow' }));
 app.use((req, res, next) => {
   next(createError(404));
 });

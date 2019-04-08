@@ -55,20 +55,20 @@ workflows:
   version: 2
   pacman-build:
     jobs:
-    - build
-    - client-test:
-        requires:
-        - build
-    - server-test:
-        requires:
-        - build
-    - deploy-server:
-        requires:
-        - client-test
-        - server-test
-        filters:
-          branches:
-            only:
-              - master
-              - production
+    # - build
+    # - client-test:
+    #     requires:
+    #     - build
+    # - server-test:
+    #     requires:
+    #     - build
+    - deploy-server
+        # requires:
+        # - client-test
+        # - server-test
+        # filters:
+        #   branches:
+        #     only:
+        #       - master
+        #       - production
           
